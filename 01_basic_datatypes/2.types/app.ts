@@ -1,27 +1,13 @@
-/* Functions and Return types */
-function add(n1: number, n2: number): number {
-  return n1 + n2;
+let userInput: unknown;
+let userName: string;
+
+userInput = 8;
+userInput = "Pooooorrr";
+
+// userName = userInput; //Type 'unknown' is not assignable to type 'string'.
+// Use either
+userName = userInput.toString();
+// or
+if (typeof userInput === "string") {
+  userName = userInput;
 }
-
-function printResult(no: number): void {
-  console.log("result: " + no);
-}
-
-function addAndHandle(n1: number, n2: number, cb: (n: number) => void) {
-  const result = n1 + n2;
-  cb(result);
-}
-
-printResult(add(3400, 899));
-
-let combinedValues: (a: number, b: number) => number;
-
-combinedValues = add;
-// combinedValues = 9;
-// combinedValues = printResult;
-
-console.log(combinedValues(8, 8));
-
-addAndHandle(5, 70, (res) => {
-  console.log(res);
-});
