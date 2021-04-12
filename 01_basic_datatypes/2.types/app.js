@@ -1,12 +1,13 @@
-function add(n1, n2, showResult, phrase) {
-    if (showResult === true) {
-        console.log(phrase + (n1 + n2));
-    }
-    return n1 + n2;
+// const person: { name: string; age: number} = {
+var person = {
+    name: "Bellarina",
+    age: 56,
+    hobbies: ["Sells", "Marketing"]
+};
+var favoriteFoods;
+favoriteFoods = ["Cassava", "Beans"];
+console.log(person.name);
+for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
+    var hoby = _a[_i];
+    console.log(hoby.toUpperCase());
 }
-var number1 = 7;
-var number2 = 2;
-var printResult = true;
-var resultPhrase = 'Result is: ';
-var result = add(number1, number2, printResult, resultPhrase);
-console.log(result);
