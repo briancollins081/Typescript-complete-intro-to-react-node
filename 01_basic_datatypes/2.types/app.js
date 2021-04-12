@@ -1,13 +1,15 @@
-// const person: { name: string; age: number} = {
-var person = {
-    name: "Bellarina",
-    age: 56,
-    hobbies: ["Sells", "Marketing"]
-};
-var favoriteFoods;
-favoriteFoods = ["Cassava", "Beans"];
-console.log(person.name);
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hoby = _a[_i];
-    console.log(hoby.toUpperCase());
+// UNION TYPES
+function combine(n1, n2) {
+    var result;
+    if (typeof n1 === "number" && typeof n2 === "number") {
+        result = n1 + n2;
+    }
+    else {
+        result = n1.toString() + n2.toString();
+    }
+    return result;
 }
+var combinedAges = combine(28, 28);
+console.log({ combinedAges: combinedAges });
+var combinedNames = combine("Alice", "Peter");
+console.log({ combinedNames: combinedNames });

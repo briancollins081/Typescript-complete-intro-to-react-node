@@ -1,28 +1,17 @@
-// const person: { name: string; age: number} = {
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string]; //tuple - fixed array with fixed types  
-} = {
-  name: "Bellarina",
-  age: 56,
-  hobbies: ["Sells", "Marketing"],
-  role: [2, "author"],
-};
+// UNION TYPES
+function combine(n1: number | string, n2: number | string) {
+  let result;
+  if (typeof n1 === "number" && typeof n2 === "number") {
+    result = n1 + n2;
+  }else{
+      result = n1.toString() + n2.toString();
+  }
 
-let favoriteFoods: string[];
-favoriteFoods = ["Cassava", "Beans"];
-
-
-// Tuple
-// person.role.push("Admin") //exception -> push is allowed
-// person.role[0] = "Pipe"; //fails
-// person[1] = "Pipe"
-// person.role = [0, "User", "Biller"] //fails
-person.role = [0, "User",] //passes
-console.log(person.name);
-
-for (const hoby of person.hobbies) {
-  console.log(hoby.toUpperCase());
+  return result;
 }
+
+const combinedAges = combine(28, 28);
+console.log({ combinedAges });
+
+const combinedNames = combine("Alice", "Peter");
+console.log({ combinedNames });
