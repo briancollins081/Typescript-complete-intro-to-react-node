@@ -11,3 +11,11 @@ userName = userInput.toString();
 if (typeof userInput === "string") {
   userName = userInput;
 }
+
+// NEVER TYPE
+function generateError(message: string, code: number):never {
+  throw { message, errorCode: code };
+}
+const result = generateError("This is an error by me!", 1700);
+
+console.log({result});
