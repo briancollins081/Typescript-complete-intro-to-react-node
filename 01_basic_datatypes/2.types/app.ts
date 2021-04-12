@@ -1,17 +1,10 @@
-// UNION TYPES
-function combine(n1: number | string, n2: number | string) {
-  let result;
-  if (typeof n1 === "number" && typeof n2 === "number") {
-    result = n1 + n2;
-  }else{
-      result = n1.toString() + n2.toString();
-  }
-
-  return result;
+/* Functions and Return types */
+function add(n1: number, n2: number): number {
+  return n1 + n2;
 }
 
-const combinedAges = combine(28, 28);
-console.log({ combinedAges });
+function printResult(no: number): void {
+  console.log("result: " + no);
+}
 
-const combinedNames = combine("Alice", "Peter");
-console.log({ combinedNames });
+printResult(add(3400, 899));
