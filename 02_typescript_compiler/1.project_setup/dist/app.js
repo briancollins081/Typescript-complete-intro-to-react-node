@@ -5,3 +5,4 @@ window.onload = function () {
         console.log("Clicked Button");
     });
 };
+//# sourceMappingURL=app.js.map

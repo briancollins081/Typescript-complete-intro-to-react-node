@@ -12,3 +12,4 @@ function add(n1, n2) {
     return;
 }
 sendAnalytics("Data analutics HERE!");
+//# sourceMappingURL=analytics.js.map
