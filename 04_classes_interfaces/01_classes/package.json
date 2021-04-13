@@ -1,0 +1,12 @@
+{
+  "name": "project_setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "Andere Brian",
+  "license": "ISC"
+}
