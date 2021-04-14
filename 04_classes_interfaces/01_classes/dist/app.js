@@ -30,6 +30,10 @@ var Department = (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
+    Department.fiscalYear = 2021;
     return Department;
 }());
 var ITDepartment = (function (_super) {
@@ -80,6 +84,8 @@ var AccountingDepartment = (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
+var employee1 = Department.createEmployee("Andere");
+console.log(employee1, Department.fiscalYear);
 var it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
 console.log(it);
 var ac = new AccountingDepartment("d-ac_1", []);

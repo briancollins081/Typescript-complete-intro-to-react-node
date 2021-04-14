@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear: number = 2021;
   // private readonly id: string;
   // private name: string;
   // private employees: string[] = [];
@@ -28,6 +29,11 @@ class Department {
     console.log(this.employees.length);
     console.log(this.employees);
   }
+
+  // Static methods
+  static createEmployee(name: string) {
+    return { name };
+  }
 }
 
 class ITDepartment extends Department {
@@ -45,9 +51,9 @@ class AccountingDepartment extends Department {
     }
     throw new Error("No report found!");
   }
-  set mostRecentReport(value:string){
-    if(!value){
-      throw new Error("Please provide a valid value for a report!")
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error("Please provide a valid value for a report!");
     }
     this.addReports(value);
   }
@@ -85,6 +91,10 @@ accoutingCopy.describe(); */
 // const accoutingCopy = { name:"Poo", describe: accounting.describe };
 // accoutingCopy.describe();
 
+const employee1 = Department.createEmployee("Andere");
+
+console.log(employee1, Department.fiscalYear);
+
 const it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
 console.log(it);
 
@@ -97,7 +107,6 @@ console.log(ac.mostRecentReport); // access getter as a value not a method
 // Using setters
 ac.mostRecentReport = "Nano tech failure #56";
 console.log(ac.mostRecentReport);
-
 
 ac.printReports();
 
