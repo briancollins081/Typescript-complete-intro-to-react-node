@@ -1,7 +1,8 @@
 class Department {
   // private readonly id: string;
   // private name: string;
-  private employees: string[] = [];
+  // private employees: string[] = [];
+  protected employees: string[] = []; //make it availabe in child classes
 
   // Define argument with access modifier to create the param as a property of the class
   constructor(private readonly id: string, public name: string) {
@@ -41,7 +42,12 @@ class AccountingDepartment extends Department {
     super(id, "Accounting");
     this.reports = reports;
   }
-
+  addEmployee(name:string){
+    if(name === "ABC"){
+      return;
+    }
+    this.employees.push(name)
+  }
   addReports(text: string) {
     this.reports.push(text);
   }
@@ -68,6 +74,10 @@ const it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
 console.log(it);
 
 const ac = new AccountingDepartment("d-ac_1", []);
+console.log(ac);
 ac.addReports("What the hell happened here...");
 ac.printReports();
-console.log(ac);
+
+ac.addEmployee("Hellen");
+ac.addEmployee("ABC");
+ac.printEmployeeInformation();
