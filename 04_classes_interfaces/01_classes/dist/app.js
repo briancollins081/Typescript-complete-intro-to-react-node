@@ -9,11 +9,18 @@ var Person = (function () {
         this.name = name;
     }
     Person.prototype.greet = function (phrase) {
-        console.log(phrase + " " + this.name);
+        if (this.name) {
+            console.log(phrase + " it is " + this.name);
+        }
+        else {
+            console.log("Hi, Helloo!!");
+        }
     };
     return Person;
 }());
 var user1;
 user1 = new Person("Justine");
+user1.greet("Hello there");
+user1 = new Person();
 user1.greet("Hello there");
 //# sourceMappingURL=app.js.map

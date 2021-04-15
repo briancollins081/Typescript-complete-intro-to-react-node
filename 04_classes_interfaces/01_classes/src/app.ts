@@ -7,20 +7,25 @@ addFunction = (n1: number, n2: number) => {
   return n1 + n2;
 };
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string; //optional
 }
 interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
 class Person implements Greetable {
-  name: string;
+  name?: string;
   age: number = 30;
-  constructor(name: string) {
+  constructor(name?: string) {
     this.name = name;
   }
   greet(phrase: string) {
-    console.log(phrase + " " + this.name);
+    if (this.name) {
+      console.log(phrase + " it is " + this.name);
+    } else {
+      console.log("Hi, Helloo!!");
+    }
   }
 }
 
@@ -37,6 +42,8 @@ user1 = {
 let user1: Greetable; // or :Person both work
 
 user1 = new Person("Justine");
+user1.greet("Hello there");
+user1 = new Person();
+user1.greet("Hello there");
 // user1.name = "p"; //read only not changeable
 
-user1.greet("Hello there");
