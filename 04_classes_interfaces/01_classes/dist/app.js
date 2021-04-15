@@ -69,6 +69,13 @@ var AccountingDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.getInstance = function () {
+        if (AccountingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment("d2", []);
+        return this.instance;
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "ABC") {
             return;
@@ -87,14 +94,7 @@ var AccountingDepartment = (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
-var employee1 = Department.createEmployee("Andere");
-console.log(employee1, Department.fiscalYear);
-var it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
-it.describe();
-var ac = new AccountingDepartment("d-ac_1", []);
-ac.addReports("What the hell happened here...");
-ac.mostRecentReport = "Nano tech failure #56";
-ac.addEmployee("Hellen");
-ac.addEmployee("ABC");
-ac.describe();
+var ac = AccountingDepartment.getInstance();
+var ac2 = AccountingDepartment.getInstance();
+console.log(ac, ac2);
 //# sourceMappingURL=app.js.map

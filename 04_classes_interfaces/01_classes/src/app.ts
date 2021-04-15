@@ -42,15 +42,15 @@ class ITDepartment extends Department {
   constructor(id: string, public admins: string[]) {
     super(id, "IT");
   }
-  describe(){
-    console.log("IT Department ID: "+this.id);
-    
+  describe() {
+    console.log("IT Department ID: " + this.id);
   }
 }
 
 class AccountingDepartment extends Department {
   private reports: string[];
   private lastReport: string;
+  private static instance: AccountingDepartment;
   get mostRecentReport() {
     if (this.lastReport) {
       return this.lastReport;
@@ -63,11 +63,26 @@ class AccountingDepartment extends Department {
     }
     this.addReports(value);
   }
-  constructor(id: string, reports: string[]) {
+  /* constructor(id: string, reports: string[]) {
+    super(id, "Accounting");
+    this.reports = reports;
+    this.lastReport = reports[0];
+  } */
+  // PRIVATE CONSTRUCTOR
+  private constructor(id: string, reports: string[]) {
     super(id, "Accounting");
     this.reports = reports;
     this.lastReport = reports[0];
   }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment("d2", []);
+    return this.instance;
+  }
+
   addEmployee(name: string) {
     if (name === "ABC") {
       return;
@@ -83,46 +98,50 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 
-  describe(){
-    console.log("Accounting Department ID: "+this.id);
-    
+  describe() {
+    console.log("Accounting Department ID: " + this.id);
   }
 }
 
-// const accounting = new Department("d_ac_1", "Accounting");
-// accounting.addEmployee("Prickter");
-// accounting.addEmployee("Loittieffty");
-// accounting.employees[4] = "Sidney"; //not possible if it is a private attribute
-// console.log(accounting);
-// accounting.describe();
-// accounting.printEmployeeInformation();
-/* const accoutingCopy = { describe: accounting.describe };
-accoutingCopy.describe(); */
+// // const accounting = new Department("d_ac_1", "Accounting");
+// // accounting.addEmployee("Prickter");
+// // accounting.addEmployee("Loittieffty");
+// // accounting.employees[4] = "Sidney"; //not possible if it is a private attribute
+// // console.log(accounting);
+// // accounting.describe();
+// // accounting.printEmployeeInformation();
+// /* const accoutingCopy = { describe: accounting.describe };
+// accoutingCopy.describe(); */
 
-// const accoutingCopy = { name:"Poo", describe: accounting.describe };
-// accoutingCopy.describe();
+// // const accoutingCopy = { name:"Poo", describe: accounting.describe };
+// // accoutingCopy.describe();
 
-const employee1 = Department.createEmployee("Andere");
+// const employee1 = Department.createEmployee("Andere");
 
-console.log(employee1, Department.fiscalYear);
+// console.log(employee1, Department.fiscalYear);
 
-const it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
-// console.log(it);
-it.describe();
+// const it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
+// // console.log(it);
+// it.describe();
 
-const ac = new AccountingDepartment("d-ac_1", []);
-// console.log(ac.mostRecentReport); // access getter as a value not a method
-// console.log(ac);
-ac.addReports("What the hell happened here...");
-// console.log(ac.mostRecentReport); // access getter as a value not a method
+// const ac = new AccountingDepartment("d-ac_1", []);
+// // console.log(ac.mostRecentReport); // access getter as a value not a method
+// // console.log(ac);
+// ac.addReports("What the hell happened here...");
+// // console.log(ac.mostRecentReport); // access getter as a value not a method
 
-// Using setters
-ac.mostRecentReport = "Nano tech failure #56";
-// console.log(ac.mostRecentReport);
+// // Using setters
+// ac.mostRecentReport = "Nano tech failure #56";
+// // console.log(ac.mostRecentReport);
 
-// ac.printReports();
+// // ac.printReports();
 
-ac.addEmployee("Hellen");
-ac.addEmployee("ABC");
-// ac.printEmployeeInformation();
-ac.describe();
+// ac.addEmployee("Hellen");
+// ac.addEmployee("ABC");
+// // ac.printEmployeeInformation();
+// ac.describe();
+
+// Private constructors
+const ac = AccountingDepartment.getInstance();
+const ac2 = AccountingDepartment.getInstance();
+console.log(ac, ac2);
