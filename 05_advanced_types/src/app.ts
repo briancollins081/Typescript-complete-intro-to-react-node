@@ -139,10 +139,10 @@ const errorBag: ErrorContainer = {
  */
 
 // Functions overloads
-function addFunc(a: number, b: number):number;
-function addFunc(a: string, b: string):string;
-function addFunc(a: string, b: number):string;
-function addFunc(a: number, b: string):string;
+function addFunc(a: number, b: number): number;
+function addFunc(a: string, b: string): string;
+function addFunc(a: string, b: number): string;
+function addFunc(a: number, b: string): string;
 function addFunc(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     return a.toString() + b.toString();
@@ -154,3 +154,21 @@ const result2 = addFunc("po", "ooh");
 const result3 = addFunc("Huh", 10);
 const result4 = addFunc(100, "pooh");
 
+// Optional Chaining
+const fetchedUserData = {
+  id: "u1",
+  name: "Andere",
+  job: { title: "CEO", description: "Lovely head of work!" },
+};
+
+console.log(fetchedUserData?.job?.title);
+
+// Nullish coalescing
+
+// // const userInput = null; //ie from remote
+// const userInput = ""; //ie from remote
+// const storedData = userInput || "DEFAULT"; // TREATES "" | NULL | UNDEFINED as falsy
+
+// const userInput = null; //ie from remote
+const userInput = ""; //ie from remote
+const storedData = userInput ?? "DEFAULT"; //  NULL / UNDEFINED only as falsy
