@@ -1,4 +1,8 @@
 "use strict";
+var addFunction;
+addFunction = function (n1, n2) {
+    return n1 + n2;
+};
 var Person = (function () {
     function Person(name) {
         this.age = 30;
