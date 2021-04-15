@@ -53,4 +53,17 @@ function useVehicle(vehicle) {
 }
 useVehicle(v1);
 useVehicle(v2);
+function moveAnimal(animal) {
+    var speed = 0;
+    switch (animal.type) {
+        case "bird":
+            speed = animal.flyingSpeed;
+            break;
+        case "horse":
+            speed = animal.runningSpeed;
+    }
+    console.log("Moving at speed: ", speed);
+}
+moveAnimal({ type: "horse", runningSpeed: 800 });
+moveAnimal({ type: "bird", flyingSpeed: 8000 });
 //# sourceMappingURL=app.js.map

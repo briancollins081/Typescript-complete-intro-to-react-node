@@ -88,3 +88,31 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+// Descriminated Unions - because the individual classes | interfaces have a common descriptor
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed = 0;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving at speed: ", speed);
+}
+
+moveAnimal({ type: "horse", runningSpeed: 800 });
+moveAnimal({ type: "bird", flyingSpeed: 8000 });
