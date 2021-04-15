@@ -1,5 +1,5 @@
 interface Greetable {
-  name: string;
+  readonly name: string;
 
   greet(phrase: string): void;
 }
@@ -25,8 +25,9 @@ user1 = {
   },
 }; */
 
-let user1: Greetable; // :Person both work
+let user1: Greetable; // or :Person both work
 
 user1 = new Person("Justine");
+// user1.name = "p"; //read only not changeable
 
 user1.greet("Hello there");
