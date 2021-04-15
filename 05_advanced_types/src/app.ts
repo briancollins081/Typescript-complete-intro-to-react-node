@@ -41,6 +41,7 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
+/* 
 type UnknownEmployee = Employee | Admin;
 
 function printEmployeeInformation(emp: UnknownEmployee) {
@@ -135,3 +136,21 @@ const errorBag: ErrorContainer = {
   email: "Error, email is invalid!",
   username: "Must begin with a character"
 }
+ */
+
+// Functions overloads
+function addFunc(a: number, b: number):number;
+function addFunc(a: string, b: string):string;
+function addFunc(a: string, b: number):string;
+function addFunc(a: number, b: string):string;
+function addFunc(a: Combinable, b: Combinable) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+const result1 = addFunc(9, 10);
+const result2 = addFunc("po", "ooh");
+const result3 = addFunc("Huh", 10);
+const result4 = addFunc(100, "pooh");
+
