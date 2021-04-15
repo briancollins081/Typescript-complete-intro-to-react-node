@@ -66,4 +66,6 @@ function moveAnimal(animal) {
 }
 moveAnimal({ type: "horse", runningSpeed: 800 });
 moveAnimal({ type: "bird", flyingSpeed: 8000 });
+var userInputElement = document.getElementById("message-output");
+userInputElement.value = "Hi there listener";
 //# sourceMappingURL=app.js.map
