@@ -68,4 +68,9 @@ moveAnimal({ type: "horse", runningSpeed: 800 });
 moveAnimal({ type: "bird", flyingSpeed: 8000 });
 var userInputElement = document.getElementById("message-output");
 userInputElement.value = "Hi there listener";
+var errorBag = {
+    1: "Error",
+    email: "Error, email is invalid!",
+    username: "Must begin with a character"
+};
 //# sourceMappingURL=app.js.map

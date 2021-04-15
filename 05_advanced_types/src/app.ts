@@ -119,5 +119,19 @@ moveAnimal({ type: "bird", flyingSpeed: 8000 });
 
 // Type Casting
 // const userInputElement = <HTMLInputElement>document.getElementById("message-output")!;
-const userInputElement = document.getElementById("message-output")! as HTMLInputElement;
+const userInputElement = document.getElementById(
+  "message-output"
+)! as HTMLInputElement;
 userInputElement.value = "Hi there listener";
+
+// INDEX Properties
+interface ErrorContainer {
+  //{email:"Not a valid email", username:"Must start with a character" ...other}
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  1:"Error",
+  email: "Error, email is invalid!",
+  username: "Must begin with a character"
+}
