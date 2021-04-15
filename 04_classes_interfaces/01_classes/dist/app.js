@@ -20,9 +20,6 @@ var Department = (function () {
         this.name = name;
         this.employees = [];
     }
-    Department.prototype.describe = function () {
-        console.log("Department: " + " " + this.id + " " + this.name);
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -43,6 +40,9 @@ var ITDepartment = (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log("IT Department ID: " + this.id);
+    };
     return ITDepartment;
 }(Department));
 var AccountingDepartment = (function (_super) {
@@ -82,20 +82,19 @@ var AccountingDepartment = (function (_super) {
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
     };
+    AccountingDepartment.prototype.describe = function () {
+        console.log("Accounting Department ID: " + this.id);
+    };
     return AccountingDepartment;
 }(Department));
 var employee1 = Department.createEmployee("Andere");
 console.log(employee1, Department.fiscalYear);
 var it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
-console.log(it);
+it.describe();
 var ac = new AccountingDepartment("d-ac_1", []);
-console.log(ac);
 ac.addReports("What the hell happened here...");
-console.log(ac.mostRecentReport);
 ac.mostRecentReport = "Nano tech failure #56";
-console.log(ac.mostRecentReport);
-ac.printReports();
 ac.addEmployee("Hellen");
 ac.addEmployee("ABC");
-ac.printEmployeeInformation();
+ac.describe();
 //# sourceMappingURL=app.js.map

@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   static fiscalYear: number = 2021;
   // private readonly id: string;
   // private name: string;
@@ -6,7 +6,7 @@ class Department {
   protected employees: string[] = []; //make it availabe in child classes
 
   // Define argument with access modifier to create the param as a property of the class
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // this.id = ID;
     // this.name = nm;
   }
@@ -15,10 +15,12 @@ class Department {
     console.log("Department: " + this.name);
   } */
 
-  describe(this: Department) {
+  /* describe(this: Department) {
     //type safety
     console.log("Department: " + " " + this.id + " " + this.name);
-  }
+  } */
+
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     // this.id = "900"; //read only can not be modified after intialization - ts feature
@@ -39,6 +41,10 @@ class Department {
 class ITDepartment extends Department {
   constructor(id: string, public admins: string[]) {
     super(id, "IT");
+  }
+  describe(){
+    console.log("IT Department ID: "+this.id);
+    
   }
 }
 
@@ -76,6 +82,11 @@ class AccountingDepartment extends Department {
   printReports() {
     console.log(this.reports);
   }
+
+  describe(){
+    console.log("Accounting Department ID: "+this.id);
+    
+  }
 }
 
 // const accounting = new Department("d_ac_1", "Accounting");
@@ -96,20 +107,22 @@ const employee1 = Department.createEmployee("Andere");
 console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment("d_it_1", ["Blue", "White", "Red"]);
-console.log(it);
+// console.log(it);
+it.describe();
 
 const ac = new AccountingDepartment("d-ac_1", []);
 // console.log(ac.mostRecentReport); // access getter as a value not a method
-console.log(ac);
+// console.log(ac);
 ac.addReports("What the hell happened here...");
-console.log(ac.mostRecentReport); // access getter as a value not a method
+// console.log(ac.mostRecentReport); // access getter as a value not a method
 
 // Using setters
 ac.mostRecentReport = "Nano tech failure #56";
-console.log(ac.mostRecentReport);
+// console.log(ac.mostRecentReport);
 
-ac.printReports();
+// ac.printReports();
 
 ac.addEmployee("Hellen");
 ac.addEmployee("ABC");
-ac.printEmployeeInformation();
+// ac.printEmployeeInformation();
+ac.describe();
