@@ -109,3 +109,37 @@ class Product {
     return this._price + this._price * tax;
   }
 }
+
+// Autobind Decorators
+function Autobind(
+  _target: any,
+  _methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  const adjustedDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: true,
+    get() {
+      const boundFn = originalMethod.bind(this);
+      return boundFn;
+    },
+  };
+  return adjustedDescriptor;
+}
+
+class Printer {
+  message: string = "This works";
+  
+  @Autobind
+  showMessage() {
+    console.log(this.message);
+  }
+}
+
+const p = new Printer();
+
+const button = document.querySelector("button")!;
+// button.addEventListener("click", p.showMessage.bind(p));
+button.addEventListener("click", p.showMessage);
+// achieve the above using decorators
