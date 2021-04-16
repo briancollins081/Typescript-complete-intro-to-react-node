@@ -31,15 +31,21 @@ function WithTemplate(template: string, hookId: string) {
   console.log("WITH TEMPLATE FACTORY");
 
   // return function (_: Function) { //_signal unused param
-  return function (constructor: any) {
-    console.log("WITHTEMPLATE: rendering template");
-
-    const hookElement = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookElement) {
-      hookElement.innerHTML = template;
-      hookElement.querySelector("h1")!.innerText = p.name;
-    }
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    oldConstructor: T
+  ) {
+    return class extends oldConstructor {
+      constructor(..._: any[]) {
+        super();
+        console.log("WITHTEMPLATE: rendering template");
+        const hookElement = document.getElementById(hookId);
+        // const p = new oldConstructor();
+        if (hookElement) {
+          hookElement.innerHTML = template;
+          hookElement.querySelector("h1")!.innerText = this.name;
+        }
+      }
+    };
   };
 }
 
@@ -60,11 +66,31 @@ function Log(target: any, propertyName: string | Symbol) {
   console.log("Property decorators!");
   console.log(target, propertyName);
 }
+
+// Accessor Decorator
+function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("Accessor decorator");
+  console.log({ target, name, descriptor });
+}
+
+// Methods Decorator
+function Log3(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("Method decorator");
+  console.log({ target, name, descriptor });
+}
+
+// Parameter Decorator
+function Log4(target: any, name: string | Symbol, position: number) {
+  console.log("Parameter decorator");
+  console.log({ target, name, position });
+}
+
 class Product {
   @Log
   title: string;
   private _price: number;
 
+  @Log2
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -78,7 +104,8 @@ class Product {
     this._price = p;
   }
 
-  getPriceWithTax(tax: number) {
+  @Log3
+  getPriceWithTax(@Log4 tax: number) {
     return this._price + this._price * tax;
   }
 }
