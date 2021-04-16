@@ -145,6 +145,7 @@ button.addEventListener("click", p.showMessage);
 // achieve the above using decorators
 
 // Validation with Decorators
+/* THIRD PARTY LIB: typestack/class-validator */
 interface ValidatorConfig {
   [property: string]: {
     [validatableProp: string]: string[]; // ['required', 'positive'],
