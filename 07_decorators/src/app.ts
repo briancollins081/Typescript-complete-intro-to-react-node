@@ -19,6 +19,8 @@ console.log(pers); */
 
 // Method 2 - Decorator factories
 function Logger(logString: string) {
+  console.log("LOGGER FACTORY");
+  
   return function (constructor: Function) {
     console.log(logString);
     console.log(constructor);
@@ -26,8 +28,12 @@ function Logger(logString: string) {
 }
 
 function WithTemplate(template: string, hookId: string) {
+  console.log("WITH TEMPLATE FACTORY");
+
   // return function (_: Function) { //_signal unused param
   return function (constructor: any) {
+    console.log("WITHTEMPLATE: rendering template");
+    
     const hookElement = document.getElementById(hookId);
     const p = new constructor();
     if (hookElement) {
@@ -37,7 +43,7 @@ function WithTemplate(template: string, hookId: string) {
   };
 }
 
-// @Logger("Logging person class")
+@Logger("LOGGER: Logging person class")
 @WithTemplate("<h1>Person Class Object</h1>", "app")
 class Person {
   name = "Andere";
