@@ -4,12 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "lite-server"
+    
   },
   "keywords": [],
-  "author": "Andere B",
-  "license": "ISC",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  }
+  "author": "Andere Brian",
+  "license": "ISC"
 }
