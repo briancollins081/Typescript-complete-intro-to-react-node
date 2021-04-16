@@ -95,3 +95,7 @@ function createCourseGoal(
   courseGoal.completeUntil = date;
   return courseGoal as CourseGoal;
 }
+
+// readonly type
+const names: Readonly<string[]> = ["Andere", "Jack"];
+// names.push("Elie");

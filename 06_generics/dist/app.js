@@ -58,4 +58,5 @@ function createCourseGoal(title, description, date) {
     courseGoal.completeUntil = date;
     return courseGoal;
 }
+var names = ["Andere", "Jack"];
 //# sourceMappingURL=app.js.map
