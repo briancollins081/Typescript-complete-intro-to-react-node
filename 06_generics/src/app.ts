@@ -10,9 +10,10 @@ const promise:Promise<string> = new Promise((resolve, reject) => {
 
 // Custom Generic types
 
-function mergeObj<T, U>(objA: T, objB: U) {
+function mergeObj<T extends object, U extends object>(objA: T, objB: U) {
   return Object.assign(objA, objB);
 }
 // console.log(mergeObj({ name: "Andere" }, { age: 70 }));
-const newObj = mergeObj({ name: "Andere" }, { age: 70 });
-console.log(newObj);
+const newObj1 = mergeObj({ name: "Andere" }, { age: 70 });
+// const newObj2 = mergeObj({ name: "Andere" }, 50); // after adding extends it throws
+console.log(newObj1);
