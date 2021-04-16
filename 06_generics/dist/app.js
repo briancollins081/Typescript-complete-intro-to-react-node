@@ -51,4 +51,11 @@ numberStorage.addItem(900);
 numberStorage.addItem(800);
 console.log(numberStorage.getItems());
 console.log(numberStorage.getItem(0));
+function createCourseGoal(title, description, date) {
+    var courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    return courseGoal;
+}
 //# sourceMappingURL=app.js.map
