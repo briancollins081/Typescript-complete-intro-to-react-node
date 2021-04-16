@@ -59,4 +59,22 @@ function createCourseGoal(title, description, date) {
     return courseGoal;
 }
 var names = ["Andere", "Jack"];
+var DataStorage2 = (function () {
+    function DataStorage2() {
+        this.data = [];
+    }
+    DataStorage2.prototype.addItem = function (item) {
+        this.data.push(item);
+    };
+    DataStorage2.prototype.removeItem = function (item) {
+        this.data.splice(this.data.indexOf(item), 1);
+    };
+    DataStorage2.prototype.getItem = function (index) {
+        return this.data[index];
+    };
+    DataStorage2.prototype.getItems = function () {
+        return __spreadArray([], this.data);
+    };
+    return DataStorage2;
+}());
 //# sourceMappingURL=app.js.map
