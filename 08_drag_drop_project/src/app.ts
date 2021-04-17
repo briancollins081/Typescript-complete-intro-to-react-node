@@ -63,15 +63,24 @@ class Project {
 }
 
 // Listeners Type
-type Listener = (items: Project[]) => void;
+type Listener<T> = (items: T[]) => void;
 
-// Project State Management
-class ProjectState {
-  private listeners: Listener[] = [];
+// Project State Parent
+class State<T> {
+  protected listeners: Listener<T>[] = [];
+  addListener(listenerFn: Listener<T>) {
+    this.listeners.push(listenerFn);
+  }
+}
+
+// Project State Child
+class ProjectState extends State<Project>{
   private projects: Project[] = [];
   private static instance: ProjectState;
 
-  private constructor() {}
+  private constructor() {
+      super();
+  }
 
   static getInstance() {
     if (!this.instance) {
@@ -91,9 +100,6 @@ class ProjectState {
     for (const listenerFn of this.listeners) {
       listenerFn(this.projects.slice());
     }
-  }
-  addListener(listenerFn: Listener) {
-    this.listeners.push(listenerFn);
   }
 }
 // Instantiate Global App State
