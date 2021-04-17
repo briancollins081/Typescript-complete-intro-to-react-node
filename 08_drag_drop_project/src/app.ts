@@ -74,12 +74,12 @@ class State<T> {
 }
 
 // Project State Child
-class ProjectState extends State<Project>{
+class ProjectState extends State<Project> {
   private projects: Project[] = [];
   private static instance: ProjectState;
 
   private constructor() {
-      super();
+    super();
   }
 
   static getInstance() {
@@ -147,6 +147,31 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   abstract configure(): void;
   abstract renderContent(): void;
 }
+// Project List Item
+/* my implementation
+class ProjectListItem {
+  listElement: HTMLLIElement;
+  constructor(title: string) {
+    this.listElement = document.createElement("li");
+    this.listElement.textContent = title;
+  }
+}*/
+class ProjectListItem extends Component<HTMLUListElement, HTMLLIElement> {
+  constructor(hostId: string, private project: Project) {
+    super("single-project", hostId, false, project.id);
+
+    this.configure();
+    this.renderContent();
+  }
+  configure() {}
+  renderContent() {
+    this.element.querySelector("h2")!.textContent = this.project.title;
+    this.element.querySelector(
+      "h3"
+    )!.textContent = this.project.people.toString();
+    this.element.querySelector("p")!.textContent = this.project.description;
+  }
+}
 // Project List Class
 class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: Project[];
@@ -184,10 +209,18 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     )! as HTMLUListElement;
     listEl.innerHTML = "";
     for (const pItm of this.assignedProjects) {
-      const listItem = document.createElement("li");
+      /* // Initial implementation
+       const listItem = document.createElement("li");
       listItem.textContent = pItm.title;
+      listEl?.appendChild(listItem); */
 
-      listEl?.appendChild(listItem);
+      /* // My implementation
+      const listItem = new ProjectListItem(pItm.title).listElement;
+      listEl?.appendChild(listItem); 
+      */
+
+      //  New implementation using components
+      new ProjectListItem(this.element.querySelector("ul")!.id, pItm);
     }
   }
 }
