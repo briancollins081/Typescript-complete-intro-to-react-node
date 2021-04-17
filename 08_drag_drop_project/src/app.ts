@@ -2,7 +2,12 @@
 class ProjectInput {
   templateElement: HTMLTemplateElement;
   hostElement: HTMLDivElement;
+
   formElement: HTMLFormElement;
+  titleInputEl: HTMLInputElement;
+  descriptionInputEl: HTMLInputElement;
+  peopleInputEl: HTMLInputElement;
+
   constructor() {
     this.templateElement = document.getElementById(
       "project-input"
@@ -14,8 +19,26 @@ class ProjectInput {
       true
     );
     this.formElement = importedNode.firstElementChild as HTMLFormElement;
-    this.formElement.id = "user-input"
+    this.formElement.id = "user-input";
+
+    this.titleInputEl = this.formElement.querySelector("#title")! as HTMLInputElement;
+    this.descriptionInputEl = this.formElement.querySelector(
+      "#description"
+    )! as HTMLInputElement;
+    this.peopleInputEl = this.formElement.querySelector("#people")! as HTMLInputElement;
+
+    this.configure();
     this.attach();
+  }
+
+  private submitHandler(e: Event) {
+      e.preventDefault();
+      console.log(this.titleInputEl.value);
+      
+  }
+
+  private configure() {
+    this.formElement.addEventListener("submit", this.submitHandler.bind(this));
   }
 
   private attach() {
