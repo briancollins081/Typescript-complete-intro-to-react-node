@@ -1,7 +1,7 @@
-import { Draggable } from "../models/dragdrop.js";
-import { Project } from "../models/project.js";
-import { Component } from "../components/base.js";
-import { AutoBind } from "../decorators/autobind.js"
+import { Draggable } from "../models/dragdrop";
+import { Project } from "../models/project";
+import { Component } from "../components/base";
+import { AutoBind } from "../decorators/autobind"
 
 export // Project List Item
 /* my implementation
