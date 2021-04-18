@@ -4,8 +4,8 @@
   "description": "Understanding TypeScript Course Setup",
   "main": "app.js",
   "scripts": {
-    "build": "webpack",
-    "start": "lite-server"
+    "start": "webpack serve",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [
     "typescript",
