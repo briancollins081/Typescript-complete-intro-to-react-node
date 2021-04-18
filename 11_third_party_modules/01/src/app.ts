@@ -22,6 +22,18 @@ const loadedProducts = plainToClass(Product, products);
 // const p1 = new Product("A book", 33.59);
 loadedProducts.forEach((p) => {
   console.log(p.getInformation());
-});
- */
+}); */
+
 // 3. USING TYPESCRIPT ONLY LIBS
+import { validate } from "class-validator";
+import { Product } from "./product.model";
+
+const newP = new Product("", -19.5);
+validate(newP).then((errors) => {
+  if (errors.length > 0) {
+    console.log("VALIDATION ERRORS");
+    console.log(errors);
+  } else {
+    console.log(newP);
+  }
+});
