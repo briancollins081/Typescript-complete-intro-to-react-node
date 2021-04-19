@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTodo = void 0;
+exports.deleteTodo = exports.updateTodo = exports.getTodos = exports.createTodo = void 0;
 const todos_1 = require("../model/todos");
 const TODOS = [];
 // export const createTodo = (req:Request, res:Response, next:NextFunction)=>{};
@@ -11,3 +11,28 @@ const createTodo = (req, res, next) => {
     res.status(201).json({ message: "Created todo!", todo: newTodo });
 };
 exports.createTodo = createTodo;
+const getTodos = (req, res, next) => {
+    res.json({ todos: TODOS });
+};
+exports.getTodos = getTodos;
+const updateTodo = (req, res, next) => {
+    const id = req.params.id;
+    const updatedText = req.body.text;
+    const todoIndex = TODOS.findIndex((t) => t.id == id);
+    if (todoIndex < 0) {
+        throw new Error("Could not find todo!");
+    }
+    TODOS[todoIndex] = new todos_1.Todo(TODOS[todoIndex].id, updatedText);
+    res.json({ message: "Todo updated successfully!" });
+};
+exports.updateTodo = updateTodo;
+const deleteTodo = (req, res, next) => {
+    const id = req.params.id;
+    const todoIndex = TODOS.findIndex((t) => t.id == id);
+    if (todoIndex < 0) {
+        throw new Error("Could not find todo!");
+    }
+    TODOS.splice(todoIndex, 1);
+    res.json({ message: "Todo deleted successfully" });
+};
+exports.deleteTodo = deleteTodo;
