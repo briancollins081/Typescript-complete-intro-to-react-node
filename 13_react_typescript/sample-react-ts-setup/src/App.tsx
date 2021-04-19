@@ -12,10 +12,16 @@ const App: React.FC = () => {
     setTodos([...todos, { id: new Date().getTime().toString(), text }]);
   };
 
+  const handleDeleteTodo = (id: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
     <div className="App">
       <NewTodo onAddTodo={handleAddTodo} />
-      <TodoList items={todos} />
+      <TodoList items={todos} onDeleteTodo={handleDeleteTodo} />
     </div>
   );
 };
